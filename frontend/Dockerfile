@@ -7,8 +7,9 @@ ENV HOME=/${WORKDIR} \
   TZ=Asia/Tokyo \
   HOST=0.0.0.0
 
-RUN echo ${HOME}
-RUN echo ${CONTAINER_PORT}
+RUN apk update && \
+  apk upgrade && \
+  npm install
 
 WORKDIR ${HOME}
 EXPOSE ${CONTAINER_PORT}
