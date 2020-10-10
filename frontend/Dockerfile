@@ -1,4 +1,5 @@
 FROM node:12-alpine
+
 ARG WORKDIR
 ARG CONTAINER_PORT
 ARG API_URL
@@ -9,9 +10,11 @@ ENV HOME=/${WORKDIR} \
   HOST=0.0.0.0 \
   API_URL=${API_URL}
 
-RUN echo ${HOME}
-RUN echo ${CONTAINER_PORT}
-RUN echo ${API_URL}
+COPY package*.json ./
+RUN npm install --quiet
 
-WORKDIR ${HOME}
+COPY . .
+RUN npm run build
+
 EXPOSE ${CONTAINER_PORT}
+CMD ["npm", "run", "start"]
