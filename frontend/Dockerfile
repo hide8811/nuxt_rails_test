@@ -1,14 +1,14 @@
-FROM node:14.4.0-alpine
-
+FROM node:12-alpine
 ARG WORKDIR
-
 ARG CONTAINER_PORT
 
 ENV HOME=/${WORKDIR} \
-    LANG=C.URF-8 \
-    TZ=Asia/Tokyo \
-    HOST=0.0.0.0
+  LANG=C.UTF-8 \
+  TZ=Asia/Tokyo \
+  HOST=0.0.0.0
+
+RUN echo ${HOME}
+RUN echo ${CONTAINER_PORT}
 
 WORKDIR ${HOME}
-
 EXPOSE ${CONTAINER_PORT}
